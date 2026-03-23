@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>VitalSense Graph</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:url("https://images.unsplash.com/photo-1581091870622-7c5d1c8d2c4d") no-repeat center center/cover;
+background-attachment:fixed;
+color:white;
+text-align:center;
+}
+
+/* Container */
+
+.container{
+background:rgba(0,0,0,0.9);
+margin:50px auto;
+padding:30px;
+width:85%;
+border-radius:15px;
+box-shadow:0 0 25px #ff5722;
+animation:fadeIn 1s ease;
+}
+
+/* Title */
+
+h2{
+color:#ff7043;
+margin-bottom:10px;
+}
+
+.subtitle{
+color:#ccc;
+font-size:14px;
+margin-bottom:20px;
+}
+
+/* Graph */
+
+.graph-box{
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 15px #ff5722;
+}
+
+.graph-img{
+width:100%;
+max-width:900px;
+border-radius:10px;
+}
+
+/* Buttons */
+
+.btn{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.refresh{
+background:#00e5ff;
+color:black;
+}
+
+.back{
+background:#ff5722;
+color:white;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* Insight Box */
+
+.insight{
+margin-top:20px;
+padding:15px;
+background:rgba(255,255,255,0.05);
+border-radius:10px;
+color:#ccc;
+}
+
+/* Animation */
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+
+<script>
+
+// Refresh graph (no cache)
+function refreshGraph(){
+    let img = document.getElementById("graph");
+    img.src = "/static/graph.png?" + new Date().getTime();
+}
+
+// Auto refresh every 5 seconds
+setInterval(refreshGraph, 5000);
+
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📊 Creatinine Trend Analysis</h2>
+<p class="subtitle">Real-time patient monitoring and visualization</p>
+
+<div class="graph-box">
+<img id="graph" src="/static/graph.png" class="graph-img">
+</div>
+
+<!-- Buttons -->
+
+<button class="btn refresh" onclick="refreshGraph()">🔄 Refresh</button>
+
+<a href="/dashboard">
+<button class="btn back">⬅ Back</button>
+</a>
+
+<!-- Insight Section -->
+
+<div class="insight">
+📌 This graph shows the variation of creatinine levels over time.<br>
+Higher values may indicate kidney dysfunction, while stable values indicate controlled condition.
+</div>
+
+</div>
+
+</body>
+</html>
